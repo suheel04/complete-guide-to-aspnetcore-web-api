@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using my_books.ActionResults;
 
 namespace my_books.Controllers
 {
@@ -25,7 +26,32 @@ namespace my_books.Controllers
             _publishersService.AddPublisher(publisher);
             return Ok();
         }
-        [HttpGet("get=publisher-books-with-authors/{id}")]
+       /* [HttpGet("get-publisher-by-id/{id}")]
+        public CustomActionResultVM GetPublisherById(int id)
+        {
+            var _response = _publishersService.GETPublisherById(id);
+            if (_response != null)
+            {
+                // return Ok(_response);
+                var _responsObj = new CustomActionResultVM()
+                {
+                    Publisher = _response
+                };
+                return new CustomActionResult(_responsObj);
+                //return _response;
+
+            }
+            else
+            {
+                var _responsObj = new CustomActionResultVM()
+                {
+                    Exception = new Exception("This is coming from publisher controller")
+                };
+                return new CustomActionResult(_responsObj);
+                // return NotFound()
+            }
+        }*/
+        [HttpGet("get-publisher-books-with-authors/{id}")]
         public IActionResult GetPublisherData(int id)
         {
             var _response = _publishersService.GETPublisherData(id);
