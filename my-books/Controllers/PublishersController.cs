@@ -31,5 +31,13 @@ namespace my_books.Controllers
             var _response = _publishersService.GETPublisherData(id);
             return Ok(_response);
         }
+
+        [HttpDelete("delete-publisher-by-id")]
+
+        public IActionResult DeletePublisherByID(int id)
+        {
+            _publishersService.DeletePublisherByID(id);
+            return Ok();
+        }
     }
 }
