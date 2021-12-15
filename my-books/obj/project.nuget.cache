@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "nmAN+LerLGLFDGO45UsSYjPjOl5jy8zCgf54rcwHr7bw21tzUTt5TkA3mQbnRZkk/JoV2TQt2faSQZmu33rbrg==",
+  "dgSpecHash": "ZMbSVa3qg9vSR+qrpAKSq8xYrkc8GvfmWv+q5wVMPF4OjSTncM+K37OBdlsh+idPCboYzSJQgBct891/JDR7NA==",
   "success": true,
   "projectFilePath": "C:\\Suheel\\Projects\\my-books\\my-books\\my-books.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Suheel\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\Suheel\\.nuget\\packages\\microsoft.aspnetcore.mvc.versioning\\5.0.0\\microsoft.aspnetcore.mvc.versioning.5.0.0.nupkg.sha512",
     "C:\\Users\\Suheel\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Suheel\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
     "C:\\Users\\Suheel\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.0.1\\microsoft.data.sqlclient.sni.runtime.2.0.1.nupkg.sha512",
