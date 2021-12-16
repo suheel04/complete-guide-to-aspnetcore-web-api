@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using my_books.ActionResults;
 using Microsoft.Extensions.Logging;
+using my_books.Exceptions;
 
 namespace my_books.Controllers
 {
@@ -41,47 +42,83 @@ namespace my_books.Controllers
         [HttpPost("add-publisher")]
         public IActionResult AddPublisher([FromBody] PublisherVM publisher)
         {
-            _publishersService.AddPublisher(publisher);
-            return Ok();
-        }
-       /* [HttpGet("get-publisher-by-id/{id}")]
-        public CustomActionResultVM GetPublisherById(int id)
-        {
-            var _response = _publishersService.GETPublisherById(id);
-            if (_response != null)
+            try
             {
-                // return Ok(_response);
-                var _responsObj = new CustomActionResultVM()
-                {
-                    Publisher = _response
-                };
-                return new CustomActionResult(_responsObj);
-                //return _response;
+              var newPublisher= _publishersService.AddPublisher(publisher);
+                return Created(nameof(AddPublisher),publisher);
+            }
+            catch (PublisherNameException ex)
+            {
 
+                return BadRequest($"{ex.Message}, Publisher name: {ex.PublisherName}");
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+           
+        }
+        /* [HttpGet("get-publisher-by-id/{id}")]
+         public CustomActionResultVM GetPublisherById(int id)
+         {
+             var _response = _publishersService.GETPublisherById(id);
+             if (_response != null)
+             {
+                 // return Ok(_response);
+                 var _responsObj = new CustomActionResultVM()
+                 {
+                     Publisher = _response
+                 };
+                 return new CustomActionResult(_responsObj);
+                 //return _response;
+
+             }
+             else
+             {
+                 var _responsObj = new CustomActionResultVM()
+                 {
+                     Exception = new Exception("This is coming from publisher controller")
+                 };
+                 return new CustomActionResult(_responsObj);
+                 // return NotFound()
+             }
+         }*/
+
+        [HttpGet("get-publisher-by-id/{id}")]
+        public IActionResult GetPublisherById(int id)
+        {
+            var _response = _publishersService.GetPublisherById(id);
+            if(_response!=null)
+            {
+                return Ok(_response);
             }
             else
             {
-                var _responsObj = new CustomActionResultVM()
-                {
-                    Exception = new Exception("This is coming from publisher controller")
-                };
-                return new CustomActionResult(_responsObj);
-                // return NotFound()
+                return NotFound();
             }
-        }*/
+      
+        }
+
         [HttpGet("get-publisher-books-with-authors/{id}")]
         public IActionResult GetPublisherData(int id)
         {
-            var _response = _publishersService.GETPublisherData(id);
+            var _response = _publishersService.GetPublisherData(id);
             return Ok(_response);
         }
 
         [HttpDelete("delete-publisher-by-id")]
 
-        public IActionResult DeletePublisherByID(int id)
+        public IActionResult DeletePublisherById(int id)
         {
-            _publishersService.DeletePublisherByID(id);
-            return Ok();
+            try
+            {
+                _publishersService.DeletePublisherById(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
